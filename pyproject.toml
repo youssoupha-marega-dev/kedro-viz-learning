@@ -1,0 +1,44 @@
+[build-system]
+requires = [
+    "setuptools",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3.10"
+name = "kedro_viz_learning"
+readme = "README.md"
+dynamic = [
+    "version",
+]
+dependencies = [
+    "ipython>=8.10",
+    "jupyterlab>=3.0",
+    "notebook",
+    "kedro~=1.2.0",
+]
+
+[project.scripts]
+kedro-viz-learning = "kedro_viz_learning.__main__:main"
+
+[project.entry-points."kedro.hooks"]
+
+[tool.setuptools.dynamic.version]
+attr = "kedro_viz_learning.__version__"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+namespaces = false
+
+[tool.kedro]
+package_name = "kedro_viz_learning"
+project_name = "kedro-viz-learning"
+kedro_init_version = "1.2.0"
+tools = "['Data Structure']"
+example_pipeline = "False"
+source_dir = "src"
+
+[tool.kedro_telemetry]
+project_id = "8b38aa8b050b4a8f8ded808846dccec9"
