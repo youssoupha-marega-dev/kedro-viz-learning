@@ -1,0 +1,12 @@
+{
+  "type": "pandas.parquet_dataset.ParquetDataset",
+  "filepath": "C:/Users/ymarega/OneDrive - NORDIKeau/Bureau/Personnel/Data & IA/Projets perso/youssoupha-marega-dev/kedro-viz-learning/data/02_intermediate/preprocessed_companies.pq",
+  "run_command": "kedro run --to-outputs=preprocessed_companies",
+  "preview": null,
+  "preview_type": null,
+  "stats": {
+    "rows": 10019,
+    "columns": 5,
+    "file_size": 83401
+  }
+}

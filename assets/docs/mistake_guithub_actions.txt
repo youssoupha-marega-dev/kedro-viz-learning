@@ -1,0 +1,39 @@
+Le job a échoué parce que le bot GitHub Actions n’a pas les permissions nécessaires pour pousser (push) sur le dépôt. Le message d’erreur clé est :
+
+remote: Permission to youssoupha-marega-dev/kedro-viz-learning.git denied to github-actions[bot].  
+fatal: unable to access 'https://github.com/youssoupha-marega-dev/kedro-viz-learning.git/': The requested URL returned error: 403
+
+**Solution :**
+
+1. **Configurer les permissions du dépôt :**
+   - Allez dans les **Paramètres du dépôt → Actions → Général**.
+   - Sous « Permissions du workflow », assurez-vous que l’option **’Read and write permissions’** (Lecture et écriture) est bien sélectionnée.
+   - Si vous déployez sur GitHub Pages, cochez aussi **’Allow GitHub Actions to deploy to GitHub Pages’**.
+
+2. **Utilisez un Personal Access Token (PAT) avec des droits d’écriture (push) :**
+   - Créez un PAT (token) avec l’accès « repo » sur GitHub.
+   - Ajoutez ce token comme un secret dans les paramètres du dépôt (par exemple sous le nom `GH_PAT`).
+   - Dans votre fichier workflow GitHub Actions, modifiez l’étape de configuration du remote comme suit :
+
+     ```yaml
+     - name: Configurer Git
+       run: |
+         git config --global user.email "actions@github.com"
+         git config --global user.name "GitHub Actions"
+         git remote rm origin || true
+         git remote add origin https://x-access-token:${GH_PAT}@github.com/youssoupha-marega-dev/kedro-viz-learning.git
+     ```
+     Utilisez `${{ secrets.GH_PAT }}` pour injecter le token.
+
+3. **Exemple d’étape de push :**
+   ```yaml
+   - name: Push sur gh-pages
+     env:
+       GH_PAT: ${{ secrets.GH_PAT }}
+     run: |
+       git remote set-url origin https://x-access-token:${GH_PAT}@github.com/youssoupha-marega-dev/kedro-viz-learning.git
+       git push origin --force gh-pages
+   ```
+
+**Résumé** :  
+Donnez la permission d’écriture à vos workflows, et utilisez un token personnel avec droits push pour vos opérations git. Cela corrigera l’erreur 403 et permettra au job de réussir.

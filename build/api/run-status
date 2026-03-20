@@ -1,0 +1,48 @@
+{
+  "nodes": {
+    "94112458": {
+      "duration": 0.011032099951989949,
+      "status": "success",
+      "error": null
+    },
+    "acdb05cf": {
+      "duration": 0.01291649998165667,
+      "status": "success",
+      "error": null
+    }
+  },
+  "datasets": {
+    "aed46479": {
+      "name": "companies",
+      "size": 223318,
+      "status": "success",
+      "error": null
+    },
+    "493ad53a": {
+      "name": "preprocessed_companies",
+      "size": 83401,
+      "status": "success",
+      "error": null
+    },
+    "f1d596c2": {
+      "name": "shuttles",
+      "size": 936864,
+      "status": "success",
+      "error": null
+    },
+    "c071dac9": {
+      "name": "preprocessed_shuttles",
+      "size": 247408,
+      "status": "success",
+      "error": null
+    }
+  },
+  "pipeline": {
+    "run_id": "d37956f5-1e4c-410f-b89d-1edb26d310d2",
+    "start_time": "2026-03-20T05:43:56.065823+00:00",
+    "end_time": "2026-03-20T05:43:59.108748+00:00",
+    "duration": 3.042925,
+    "status": "success",
+    "error": null
+  }
+}

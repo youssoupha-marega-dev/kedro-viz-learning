@@ -1,0 +1,179 @@
+{
+  "nodes": [
+    {
+      "id": "94112458",
+      "name": "preprocess_companies_node",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "node_extras": null,
+      "parameters": {}
+    },
+    {
+      "id": "aed46479",
+      "name": "companies",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "node_extras": {
+        "stats": {
+          "rows": 10019,
+          "columns": 5,
+          "file_size": 223318
+        },
+        "styles": null
+      },
+      "layer": null,
+      "dataset_type": "pandas.csv_dataset.CSVDataset"
+    },
+    {
+      "id": "493ad53a",
+      "name": "preprocessed_companies",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "node_extras": {
+        "stats": {
+          "rows": 10019,
+          "columns": 5,
+          "file_size": 83401
+        },
+        "styles": null
+      },
+      "layer": null,
+      "dataset_type": "pandas.parquet_dataset.ParquetDataset"
+    },
+    {
+      "id": "acdb05cf",
+      "name": "preprocess_shuttles_node",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "task",
+      "modular_pipelines": null,
+      "node_extras": null,
+      "parameters": {}
+    },
+    {
+      "id": "f1d596c2",
+      "name": "shuttles",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "node_extras": {
+        "stats": {
+          "rows": 15531,
+          "columns": 13,
+          "file_size": 936864
+        },
+        "styles": null
+      },
+      "layer": null,
+      "dataset_type": "pandas.excel_dataset.ExcelDataset"
+    },
+    {
+      "id": "c071dac9",
+      "name": "preprocessed_shuttles",
+      "tags": [],
+      "pipelines": [
+        "data_processing",
+        "__default__"
+      ],
+      "type": "data",
+      "modular_pipelines": null,
+      "node_extras": {
+        "stats": {
+          "rows": 15531,
+          "columns": 13,
+          "file_size": 247408
+        },
+        "styles": null
+      },
+      "layer": null,
+      "dataset_type": "pandas.parquet_dataset.ParquetDataset"
+    }
+  ],
+  "edges": [
+    {
+      "source": "acdb05cf",
+      "target": "c071dac9"
+    },
+    {
+      "source": "94112458",
+      "target": "493ad53a"
+    },
+    {
+      "source": "aed46479",
+      "target": "94112458"
+    },
+    {
+      "source": "f1d596c2",
+      "target": "acdb05cf"
+    }
+  ],
+  "layers": [],
+  "tags": [],
+  "pipelines": [
+    {
+      "id": "__default__",
+      "name": "__default__"
+    },
+    {
+      "id": "data_processing",
+      "name": "data_processing"
+    }
+  ],
+  "modular_pipelines": {
+    "__root__": {
+      "id": "__root__",
+      "name": "__root__",
+      "inputs": [],
+      "outputs": [],
+      "children": [
+        {
+          "id": "493ad53a",
+          "type": "data"
+        },
+        {
+          "id": "acdb05cf",
+          "type": "task"
+        },
+        {
+          "id": "aed46479",
+          "type": "data"
+        },
+        {
+          "id": "f1d596c2",
+          "type": "data"
+        },
+        {
+          "id": "c071dac9",
+          "type": "data"
+        },
+        {
+          "id": "94112458",
+          "type": "task"
+        }
+      ]
+    }
+  },
+  "selected_pipeline": "data_processing"
+}

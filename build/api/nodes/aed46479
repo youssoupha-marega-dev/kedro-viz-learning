@@ -1,0 +1,12 @@
+{
+  "type": "pandas.csv_dataset.CSVDataset",
+  "filepath": "C:/Users/ymarega/OneDrive - NORDIKeau/Bureau/Personnel/Data & IA/Projets perso/youssoupha-marega-dev/kedro-viz-learning/data/01_raw/companies.csv",
+  "run_command": null,
+  "preview": null,
+  "preview_type": null,
+  "stats": {
+    "rows": 10019,
+    "columns": 5,
+    "file_size": 223318
+  }
+}

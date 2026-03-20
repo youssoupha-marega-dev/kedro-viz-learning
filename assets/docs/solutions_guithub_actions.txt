@@ -1,0 +1,48 @@
+Pour régler le problème de ton CI/CD (l’impossibilité de pousser sur le dépôt depuis GitHub Actions), voici les solutions adaptées à ta situation :
+
+---
+
+### 1. **Permission d’écriture impossible pour GITHUB_TOKEN**
+GitHub ne permet pas d’activer les permissions d’écriture directement (« Read and write permissions »), puisque ton organisation est sur le forfait gratuit et n’applique pas les règles avancées (voir ton image 2).  
+La permission « read » par défaut ne suffit pas pour effectuer un `git push`.
+
+---
+
+### 2. **Solution alternative: utiliser un Personal Access Token (PAT)**
+
+Tu peux contourner la restriction en utilisant un token d’accès personnel dans tes workflows GitHub Actions.
+
+#### **Étapes à suivre :**
+
+#### 1. **Créer un PAT**
+- Va dans tes paramètres GitHub → [Settings](https://github.com/settings/profile) → Developer settings → Personal access tokens → Tokens (classic)
+- Crée un nouveau token (bouton « Generate new token »)
+- Coche le scope `repo` (accès complet au dépôt)
+- Copie le token généré
+
+#### 2. **Ajouter le PAT comme secret**
+- Va sur ton dépôt → Settings → Secrets and variables → Actions → New repository secret
+- Nomme le secret `GH_PAT` (par exemple)
+- Colle le PAT
+
+#### 3. **Modifier ton workflow CI/CD**
+Dans ton workflow `.github/workflows/publish-kedro-viz.yml`, ajoute/modifie l’étape de push :
+
+```yaml
+- name: Push sur gh-pages
+  env:
+    GH_PAT: ${{ secrets.GH_PAT }}
+  run: |
+    git remote set-url origin https://x-access-token:${GH_PAT}@github.com/youssoupha-marega-dev/kedro-viz-learning.git
+    git push origin --force gh-pages
+```
+
+---
+
+### 3. **Résumé**
+- La permission dans les paramètres ne peut pas être changée (forfait gratuit, restrictions organisation).
+- La solution la plus simple : utiliser ton PAT comme secret pour permettre au workflow de pousser sur le dépôt.
+
+---
+
+Si tu veux un tuto complet (avec captures) pour la création du PAT ou la modification de ton fichier workflow, dis-le moi !
